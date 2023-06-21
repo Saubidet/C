@@ -1,0 +1,183 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "pila.h"
+
+Pila cargarPilaPorTeclado(Pila A);
+Pila PasajePila(Pila Primera,Pila Segunda);
+Pila ConservandoOrden(Pila uno, Pila dos,Pila tres);
+Pila SacarMenor(Pila PRINCIPAL, Pila MENOR, Pila AUX);
+Pila cargarPilaSinRetorno(Pila A);
+Pila ConservarElemento(Pila Noordenada, Pila agregar, Pila Ordenada);
+
+int main()
+{
+    /** 1. Hacer una funci�n que permita ingresar varios elementos a una pila, tanto como quiera el usuario.
+
+        Pila A;
+        inicpila(&A);
+        A=cargarPilaPorTeclado(A);
+        mostrar(&A);
+    **/
+    /**2. Hacer una funci�n que pase todos los elementos de una pila a otra.
+
+    Pila Primera;
+    inicpila(&Primera);
+    Pila Segunda;
+    inicpila(&Segunda);
+    Primera=cargarPilaPorTeclado(Primera);
+    Segunda=PasajePila(Primera,Segunda);
+
+    */
+
+    /**3. Hacer una funci�n que pase todos los elementos de una pila a otra, pero conservando el orden.
+
+    Pila uno;
+    inicpila(&uno);
+    Pila dos;
+    inicpila(&dos);
+    Pila tres;
+    inicpila(&tres);
+    uno=cargarPilaPorTeclado(uno);
+    dos=PasajePila(uno,dos);
+    tres=ConservandoOrden(uno,dos,tres);
+
+
+    */
+    /**
+    4)
+     Hacer una funci�n que encuentre el menor elemento de una pila y lo retorna. La misma debe eliminar ese dato de la pila.
+
+     Pila PRINCIPAL;
+     inicpila(&PRINCIPAL);
+     Pila MENOR;
+     inicpila(&MENOR);
+     Pila AUX;
+     inicpila(&AUX);
+
+
+
+     PRINCIPAL=cargarPilaPorTeclado(PRINCIPAL);
+     printf("princial\n");
+     mostrar(&PRINCIPAL);
+     AUX=SacarMenor(PRINCIPAL,MENOR,AUX);
+**/
+/**
+    Pila A;
+    inicpila(&A);
+
+    //A= cargarPilaSinRetorno(A);
+
+    cargarPilaSinRetorno(&A);
+    return 0;
+    */
+    /**
+
+    6. Hacer una funci�n que inserta en una pila ordenada un nuevo elemento, conservando el orden de �sta*/
+
+
+    Pila Noordenada;
+    inicpila(&Noordenada);
+    Pila agregar;
+    inicpila(&agregar);
+    Pila Ordenada;
+    inicpila(&Ordenada);
+
+    apilar(&Ordenada,2);
+    apilar(&Ordenada,5);
+    apilar(&Ordenada,8);
+    apilar(&Ordenada,9);
+    apilar(&Ordenada,11);
+    leer(&agregar);
+
+    Ordenada=ConservarElemento(Ordenada);
+
+
+}
+
+
+Pila cargarPilaPorTeclado(Pila A)
+{
+    char control = 's';
+    while(control == 's')
+    {
+        leer(&A);
+        printf("Quiere seguir cargando? Presione s o n\n");
+        fflush(stdin);
+        scanf("%c",&control);
+    }
+    return A;
+}
+
+Pila PasajePila(Pila Primera,Pila Segunda)
+{
+    while(!pilavacia(&Primera))
+    {
+        apilar(&Segunda,desapilar(&Primera));
+        mostrar(&Segunda);
+    }
+}
+
+Pila ConservandoOrden(Pila uno, Pila dos,Pila tres)
+{
+    while(!pilavacia(&uno) && !pilavacia(&dos))
+    {
+        apilar(&tres,desapilar(&dos));
+        mostrar(&tres);
+    }
+    return tres;
+}
+Pila SacarMenor(Pila PRINCIPAL, Pila MENOR , Pila AUX)
+{
+    int menor = 0;
+
+    apilar(&MENOR,desapilar(&PRINCIPAL));
+    while(!pilavacia(&PRINCIPAL))
+    {
+        if(tope(&PRINCIPAL)<tope(&MENOR))
+        {
+            apilar(&AUX,desapilar(&MENOR));
+            apilar(&MENOR,desapilar(&PRINCIPAL));
+        }
+        else
+        {
+            apilar(&AUX,desapilar(&PRINCIPAL));
+        }
+    }
+
+    menor = tope(&MENOR);
+    printf("MENOR\n");
+    mostrar(&MENOR);
+    return(MENOR);
+}
+
+/**
+void cargarPilaSinRetorno(Pila* A)
+{
+    char control = 's';
+    while(control == 's'|| control == 'S')
+    {
+        leer(A);
+        printf("Quiere seguir cargando? Presione s o n\n");
+        fflush(stdin);
+        scanf("%c",&control);
+    }
+}
+*/
+
+
+Pila ConservarElemento(Pila Noordenada, Pila agregar, Pila Ordenada)
+{
+    while(!pilavacia(&Ordenada))
+    {
+        if(tope(&Ordenada)>= tope(&agregar))
+        {
+            apilar(&Noordenada,desapilar(&Ordenada));
+        }
+        else{
+            apilar(&Ordenada,desapilar(&agregar));
+        }
+    }
+    mostrar(&Ordenada);
+    mostrar(&agregar);
+}
+
