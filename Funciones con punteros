@@ -1,0 +1,140 @@
+#include #include #include "pila.h"
+////////////////////////////////////////////1///////////////////////////////////////////////////////////////////
+void CargarPila (Pila *A);
+////////////////////////////////////////////2///////////////////////////////////////////////////////////////////
+void MoverDeunaPilaAotra (Pila *A, Pila *B);
+////////////////////////////////////////////3///////////////////////////////////////////////////////////////////
+void MoverDeunaPilaAotraPeroConservandoElorden (Pila A,Pila *B);
+Pila EncontrarYeliminarMenor (Pila *A);
+
+int main()
+{
+    Pila A;
+    inicpila(&A);
+    Pila B;
+    inicpila(&B);
+    Pila menor;
+    inicpila(&menor);
+    int cantElementos=0;
+    int opc=0;
+
+    CargarPila(&A);
+
+    printf("Que ejercicio quiere hacer !!\n");
+    scanf("%i",&opc);
+
+    switch(opc)
+    {
+    case 1:
+
+        mostrar(&A);
+        break;
+    case 2:
+        MoverDeunaPilaAotra(&A,&B);
+        mostrar(&B);
+        break;
+    case 3:
+        MoverDeunaPilaAotraPeroConservandoElorden(A,&B);
+        mostrar(&B);
+        break;
+    case 4:
+        menor = EncontrarYeliminarMenor(&A);
+        printf("PILA A\n");
+        mostrar(&A);
+        printf("Elemento Eliminado\n");
+
+        mostrar(&menor);
+        break;
+    case 5:
+        cantElementos = CuantosElementosTienePila(A);
+
+    }
+
+
+
+
+
+    return 0;
+}
+////////////////////////////////////////////1///////////////////////////////////////////////////////////////////
+void CargarPila (Pila *A)
+{
+    char control = 's';
+    while(control=='s')
+    {
+        printf("Cargando Pila...\n");
+        leer(A);
+        printf("Si desea continuar ingrese s");
+        fflush(stdin);
+        scanf("%c",&control);
+    }
+
+}
+////////////////////////////////////////////2///////////////////////////////////////////////////////////////////
+void MoverDeunaPilaAotra (Pila *A, Pila *B)
+{
+
+    while(!pilavacia(A))
+    {
+        apilar(B,desapilar(A));
+    }
+}
+////////////////////////////////////////////3///////////////////////////////////////////////////////////////////
+void MoverDeunaPilaAotraPeroConservandoElorden (Pila A,Pila *B)
+{
+    Pila aux;
+    inicpila(&aux);
+    while(!pilavacia(&A))
+    {
+        apilar(&aux,desapilar(&A));
+    }
+
+    while (!pilavacia(&aux))
+    {
+        apilar(B,desapilar(&aux));
+    }
+
+}
+////////////////////////////////////////////4///////////////////////////////////////////////////////////////////
+Pila EncontrarYeliminarMenor (Pila *A)
+{
+    Pila Aux;
+    inicpila (&Aux);
+    Pila Menor;
+    inicpila(&Menor);
+
+
+    apilar(&Menor, desapilar(A));
+
+    while (!pilavacia(A))
+    {
+        if (tope(A)
+    {
+        apilar(&Aux, desapilar(&Menor));
+            apilar(&Menor, desapilar(A));
+        }
+        else
+        {
+            apilar(&Aux, desapilar(A));
+        }
+
+    }
+    while (!pilavacia(&Aux))
+    {
+        apilar(A, desapilar(&Aux));
+    }
+
+    return Menor;
+}
+int CuantosElementosTienePila (Pila A)
+{
+    Pila aux;
+    inicpila(&aux);
+    contador=0;
+    while (!pilavacia(&A))
+    {
+        apilar(&aux,desapilar(&A));
+        contador++;
+    }
+    return contador;
+}
