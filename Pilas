@@ -1,1 +1,147 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "pila.h"
+
+int main()
+{
+    /** 1)
+
+    Pila DADA;
+    Pila AUX1;
+    Pila AUX2;
+    int i;
+    inicpila(&DADA);
+    inicpila(&AUX1);
+    inicpila(&AUX2);
+    leer(&DADA);
+    leer(&DADA);
+    leer(&DADA);
+    leer(&DADA);
+    leer(&DADA);
+    apilar(&AUX1, desapilar(&DADA));
+    apilar(&AUX1, desapilar(&DADA));
+    apilar(&AUX1, desapilar(&DADA));
+    mostrar(&AUX1);
+    apilar(&AUX2, desapilar(&DADA));
+    apilar(&AUX2, desapilar(&DADA));
+    printf("DADA:\n");
+    mostrar(&DADA);
+    printf("AUX1:\n");
+    mostrar(&AUX1);
+    printf("AUX2:\n");
+    mostrar(&AUX2);
+
+    **/
+
+
+    /** 2)
+
+    Pila Origen;
+    Pila Destino;
+    inicpila(&Origen);
+    inicpila(&Destino);
+    leer(&Origen);
+    leer(&Origen);
+    leer(&Origen);
+    apilar(&Destino,desapilar(&Origen));
+    apilar(&Destino,desapilar(&Origen));
+    apilar(&Destino,desapilar(&Origen));
+    printf("ORIGEN:\n");
+    mostrar(&Origen);
+    printf("DESTINO:\n");
+    mostrar(&Destino);
+
+
+    **/
+
+    /** 3)
+
+    Pila DADA1;
+    Pila DISTINTOS;
+    inicpila(&DADA1);
+    inicpila(&DISTINTOS);
+    leer(&DADA1);
+    leer(&DADA1);
+    leer(&DADA1);
+    while pilavacia(&DADA1){
+        if(tope(&DADA1) == 8){
+            apilar(&DISTINTOS,(desapilar(&DADA1))
+        }
+        else{
+            printf("DADA:\n
+        }
+
+    **/
+
+    /** 4)
+
+    Pila ORIGEN;
+    Pila DESTINO;
+    Pila AUXI;
+    inicpila(&ORIGEN);
+    inicpila(&DESTINO);
+    inicpila(&AUXI);
+
+    char control = 's';
+    while(control == 's'){
+        leer(&ORIGEN);
+        printf("DESEA CARGAR MAS DATOS?\n");
+        fflush(stdin);
+        scanf("%c",&control);
+    }
+    while(!pilavacia(&ORIGEN))
+    {
+        apilar(&AUXI,desapilar(&ORIGEN));
+    }
+    while(pilavacia(&ORIGEN) && !pilavacia(&AUXI))
+    {
+        apilar(&DESTINO,desapilar(&AUXI));
+        printf("AUXI\n");
+        mostrar(&AUXI);
+    }
+    printf("ORIGEN\n");
+    mostrar(&ORIGEN);
+    printf("DESTINO\n");
+    mostrar(&DESTINO);
+
+     ***/
+
+    /** 5) Cargar desde el teclado la pila DADA. Invertir la pila de manera que DADA contenga los elementos cargados originalmente en ella,
+     pero en orden inverso **/
+
+     Pila DADA;
+     Pila AUX1;
+     Pila AUX2;
+     inicpila(&DADA);
+     inicpila(&AUX1);
+     inicpila(&AUX2);
+     char control='s';
+
+     while( control == 's'){
+        leer(&DADA);
+        printf("Desea continuar?\n");
+        fflush(stdin);
+        scanf("%c",&control);
+     }
+     while(!pilavacia(&DADA)){
+        apilar(&AUX1,desapilar(&DADA));
+        mostrar(&AUX1);
+
+     }
+     while(!pilavacia(&AUX1)){
+        apilar(&AUX2,desapilar(&AUX1));
+        mostrar(&AUX1);
+
+
+
+     }
+     while(!pilavacia(&AUX2)){
+        apilar(&DADA,desapilar(&AUX2));
+     }
+     printf("DADA:\n");
+     mostrar(&DADA);
+
+
+    return 0;
+}
 
